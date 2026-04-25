@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Das Empfehlungs-Playbook für Handwerker · Tobi's Tool Time</title>
+<meta name="description" content="Wie Du Deine zufriedenen Kunden zu aktiven Verkäufern machst. Drei bewährte Varianten, zwei fertige Formulierungen, eine Entscheidungstabelle." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Archivo+Narrow:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --yellow: #F5BC23;
+    --yellow-deep: #E8A816;
+    --black: #0A0A0A;
+    --card: #0D0D0D;
+    --card-border: #1F1F1F;
+    --text-on-black: #FFFFFF;
+    --text-muted: #A8A8A8;
+    --text-on-yellow: #0A0A0A;
+    --accent: #FF6B1A;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Archivo', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--yellow);
+    color: var(--text-on-yellow);
+    line-height: 1.55;
+    overflow-x: hidden;
+  }
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+  .bg-pattern {
+    position: absolute; inset: 0; pointer-events: none; opacity: 0.15;
+    background-image:
+      radial-gradient(circle at 20% 10%, transparent 0, transparent 180px, var(--yellow-deep) 181px, transparent 220px),
+      radial-gradient(circle at 80% 60%, transparent 0, transparent 240px, var(--yellow-deep) 241px, transparent 290px);
+    z-index: 0;
+  }
+
+  /* HERO */
+  .hero { position: relative; padding: 64px 0 48px; z-index: 1; }
+  .eyebrow {
+    display: inline-block;
+    background: var(--black); color: var(--yellow);
+    padding: 8px 16px; border-radius: 999px;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; margin-bottom: 28px;
+  }
+  h1 {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 800;
+    font-size: clamp(34px, 5vw, 56px);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+    max-width: 920px;
+  }
+  h1 em { font-style: normal; background: var(--black); color: var(--yellow); padding: 0 10px; }
+  .sub {
+    font-size: clamp(16px, 1.5vw, 19px);
+    max-width: 720px;
+    margin-bottom: 12px;
+    color: #1A1A1A;
+  }
+  .signature {
+    display: flex; align-items: center; gap: 12px;
+    margin-top: 32px; font-size: 14px;
+  }
+  .sig-dot { width: 10px; height: 10px; background: var(--black); border-radius: 50%; }
+
+  /* SECTION HEADERS */
+  section { position: relative; z-index: 1; padding: 48px 0; }
+  .section-label {
+    font-family: 'Archivo Narrow', sans-serif;
+    font-size: 13px; font-weight: 600; letter-spacing: 0.18em;
+    text-transform: uppercase; margin-bottom: 12px; opacity: 0.7;
+  }
+  h2 {
+    font-size: clamp(28px, 3.5vw, 40px);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+    max-width: 820px;
+  }
+  .lead { font-size: 17px; max-width: 720px; margin-bottom: 32px; color: #1A1A1A; }
+
+  /* PROBLEM BLOCK */
+  .problem-box {
+    background: var(--black); color: var(--text-on-black);
+    border-radius: 20px; padding: 36px 40px;
+    display: grid; grid-template-columns: auto 1fr; gap: 28px; align-items: start;
+  }
+  .problem-icon {
+    width: 56px; height: 56px; border-radius: 16px;
+    background: var(--yellow); display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 24px; color: var(--black);
+  }
+  .problem-box h3 { font-size: 22px; font-weight: 700; margin-bottom: 10px; }
+  .problem-box p { color: var(--text-muted); font-size: 16px; line-height: 1.65; }
+
+  /* VARIANTS GRID */
+  .variants { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 24px; }
+  .variant-card {
+    background: var(--card); color: var(--text-on-black);
+    border-radius: 24px; padding: 36px 32px;
+    display: flex; flex-direction: column;
+    border: 1px solid var(--card-border);
+    position: relative; overflow: hidden;
+    transition: transform 0.2s ease;
+  }
+  .variant-card:hover { transform: translateY(-4px); }
+  .variant-letter {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 800; font-size: 56px; line-height: 1;
+    color: var(--yellow); margin-bottom: 4px;
+  }
+  .variant-label { font-size: 11px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 24px; }
+  .variant-name { font-size: 22px; font-weight: 700; margin-bottom: 8px; line-height: 1.2; }
+  .variant-tag { display: inline-block; font-size: 12px; color: var(--yellow); font-weight: 600; margin-bottom: 20px; letter-spacing: 0.05em; }
+  .variant-desc { font-size: 14px; color: var(--text-muted); margin-bottom: 24px; line-height: 1.65; }
+  .variant-stats {
+    border-top: 1px solid var(--card-border);
+    padding-top: 20px; margin-top: auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  }
+  .stat-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px; }
+  .stat-value { font-size: 15px; font-weight: 600; color: var(--text-on-black); line-height: 1.3; }
+  .fit-line {
+    margin-top: 20px; padding: 14px 16px;
+    background: rgba(245, 188, 35, 0.08);
+    border-left: 3px solid var(--yellow);
+    font-size: 13px; color: var(--text-on-black); line-height: 1.5;
+    border-radius: 4px;
+  }
+  .fit-line strong { color: var(--yellow); font-weight: 600; }
+
+  /* DECISION TABLE */
+  .decision {
+    background: var(--black); color: var(--text-on-black);
+    border-radius: 24px; padding: 40px;
+  }
+  .decision h2 { color: var(--text-on-black); margin-bottom: 8px; }
+  .decision .section-label { color: var(--yellow); opacity: 1; }
+  .decision .lead { color: var(--text-muted); max-width: 680px; margin-bottom: 32px; }
+  .decision-grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+    border: 1px solid var(--card-border); border-radius: 16px; overflow: hidden;
+  }
+  .dec-row { display: contents; }
+  .dec-cell {
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--card-border);
+    border-right: 1px solid var(--card-border);
+    font-size: 14px; line-height: 1.55;
+  }
+  .dec-cell:nth-child(3n) { border-right: none; }
+  .dec-header {
+    background: rgba(245, 188, 35, 0.08);
+    font-weight: 700; font-size: 12px;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--yellow);
+  }
+  .dec-row:last-child .dec-cell { border-bottom: none; }
+  .tag-a { color: var(--yellow); font-weight: 700; }
+  .tag-b { color: #70B8FF; font-weight: 700; }
+  .tag-c { color: #FF9E70; font-weight: 700; }
+
+  /* FORMULATIONS */
+  .formulations { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .formula-card {
+    background: var(--black); color: var(--text-on-black);
+    border-radius: 24px; padding: 36px 32px;
+  }
+  .formula-num {
+    display: inline-block; font-family: 'Archivo', sans-serif;
+    background: var(--yellow); color: var(--black);
+    font-weight: 800; font-size: 14px; padding: 6px 12px;
+    border-radius: 8px; margin-bottom: 20px;
+    letter-spacing: 0.05em;
+  }
+  .formula-title { font-size: 20px; font-weight: 700; margin-bottom: 6px; line-height: 1.25; }
+  .formula-when { font-size: 13px; color: var(--yellow); margin-bottom: 24px; font-weight: 500; }
+  .formula-body {
+    background: #161616;
+    border-left: 3px solid var(--yellow);
+    border-radius: 6px;
+    padding: 22px 24px;
+    font-family: 'Archivo Narrow', sans-serif;
+    font-size: 15px; line-height: 1.7;
+    color: #E8E8E8;
+    white-space: pre-line;
+  }
+  .formula-body em {
+    font-style: normal;
+    background: rgba(245, 188, 35, 0.15);
+    color: var(--yellow);
+    padding: 1px 6px; border-radius: 3px;
+  }
+  .copy-btn {
+    margin-top: 18px;
+    background: transparent; color: var(--yellow);
+    border: 1px solid var(--card-border);
+    padding: 10px 16px; border-radius: 8px;
+    font-size: 13px; font-weight: 600;
+    cursor: pointer; letter-spacing: 0.02em;
+    transition: background 0.15s ease;
+    font-family: inherit;
+  }
+  .copy-btn:hover { background: rgba(245, 188, 35, 0.1); }
+  .copy-btn.copied { background: var(--yellow); color: var(--black); border-color: var(--yellow); }
+
+  /* FEHLER */
+  .fehler-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .fehler-card {
+    background: var(--card); color: var(--text-on-black);
+    border-radius: 20px; padding: 28px;
+    border: 1px solid var(--card-border);
+    position: relative;
+  }
+  .fehler-num {
+    position: absolute; top: -12px; left: 28px;
+    background: var(--yellow); color: var(--black);
+    font-weight: 800; font-size: 13px;
+    padding: 6px 14px; border-radius: 20px;
+    letter-spacing: 0.08em;
+  }
+  .fehler-title {
+    font-size: 17px; font-weight: 700; margin-top: 8px; margin-bottom: 10px;
+    color: var(--text-on-black); line-height: 1.3;
+  }
+  .fehler-desc { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+
+  /* CTA */
+  .cta-wrap { padding: 60px 0 24px; }
+  .cta {
+    background: var(--black); border-radius: 28px;
+    padding: 52px 48px;
+    display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; align-items: center;
+    position: relative; overflow: hidden;
+  }
+  .cta-accent {
+    position: absolute; top: -60px; right: -60px;
+    width: 220px; height: 220px; border-radius: 50%;
+    background: radial-gradient(circle, var(--yellow) 0%, transparent 70%);
+    opacity: 0.2;
+  }
+  .cta h2 { color: var(--text-on-black); max-width: 100%; }
+  .cta-label { color: var(--yellow); opacity: 1; }
+  .cta p { color: var(--text-muted); font-size: 16px; margin-bottom: 0; max-width: 520px; line-height: 1.65; }
+  .cta-button-wrap { text-align: right; }
+  .cta-button {
+    display: inline-flex; align-items: center; gap: 12px;
+    background: var(--yellow); color: var(--black);
+    font-weight: 700; font-size: 17px;
+    padding: 20px 32px; border-radius: 14px;
+    text-decoration: none;
+    transition: transform 0.15s ease, background 0.15s ease;
+  }
+  .cta-button:hover { transform: translateY(-2px); background: #FFD04D; }
+  .cta-sub { color: var(--text-muted); font-size: 13px; margin-top: 12px; display: block; }
+
+  /* FOOTER */
+  footer {
+    background: var(--black); color: var(--text-muted);
+    padding: 48px 0 32px;
+    margin-top: 48px;
+  }
+  .foot-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 32px; }
+  .foot-brand {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 800; font-size: 20px; color: var(--text-on-black);
+    margin-bottom: 12px; letter-spacing: -0.02em;
+  }
+  .foot-desc { font-size: 14px; line-height: 1.65; max-width: 420px; }
+  .foot-col h4 { font-size: 12px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--yellow); margin-bottom: 16px; font-weight: 600; }
+  .foot-col a {
+    display: block; color: var(--text-muted); text-decoration: none;
+    font-size: 14px; margin-bottom: 10px; transition: color 0.15s;
+  }
+  .foot-col a:hover { color: var(--yellow); }
+  .foot-bottom {
+    border-top: 1px solid var(--card-border);
+    margin-top: 40px; padding-top: 24px;
+    display: flex; justify-content: space-between; font-size: 12px;
+    flex-wrap: wrap; gap: 16px;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 880px) {
+    .variants, .formulations, .fehler-grid { grid-template-columns: 1fr; }
+    .cta { grid-template-columns: 1fr; text-align: left; }
+    .cta-button-wrap { text-align: left; }
+    .decision-grid { grid-template-columns: 1fr; }
+    .dec-cell { border-right: none; }
+    .dec-header { display: none; }
+    .dec-cell { padding-top: 16px; padding-bottom: 16px; }
+    .foot-grid { grid-template-columns: 1fr; }
+    .problem-box { grid-template-columns: 1fr; padding: 28px 24px; }
+    .decision, .cta { padding: 32px 24px; }
+    section { padding: 36px 0; }
+    .hero { padding: 44px 0 32px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-pattern"></div>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Gratis Playbook · für Skool-Mitglieder</span>
+    <h1>Wie Du zufriedene Kunden zu <em>aktiven Verkäufern</em> machst</h1>
+    <p class="sub">Drei bewährte Empfehlungs-Varianten. Zwei fertige Formulierungen. Eine Entscheidungstabelle. In 15 Minuten in Deinem Betrieb angewendet.</p>
+    <div class="signature">
+      <span class="sig-dot"></span>
+      <span><strong>Tobias Haack</strong> · Elektromeister &amp; Inhaber Elektro Haack</span>
+    </div>
+  </div>
+</header>
+
+<!-- PROBLEM -->
+<section>
+  <div class="wrap">
+    <div class="problem-box">
+      <div class="problem-icon">!</div>
+      <div>
+        <h3>Der Moment, den 99% der Handwerker verschlafen</h3>
+        <p>Der Auftrag ist fertig. Der Kunde ist zufrieden, lobt Deine Arbeit, vielleicht erzählt er's beim nächsten Grillabend jemandem. Vielleicht. Zufall.<br><br>Dabei ist das der eine Moment, den Du selbst steuern kannst. Wer das systematisch macht, füllt seine Auftragsbücher über Empfehlungen &mdash; nicht über Werbung. Dieses Playbook zeigt Dir das konkrete System.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VARIANTEN -->
+<section>
+  <div class="wrap">
+    <p class="section-label">Teil 1 · Die drei Varianten</p>
+    <h2>Wähle das Modell, das zu Deinem Betrieb passt</h2>
+    <p class="lead">Eins davon passt zu Deiner Struktur, Deinen Margen und Deiner Zielgruppe. Schau Dir alle drei an, dann sortier nach Bauchgefühl plus Beispielrechnung.</p>
+
+    <div class="variants">
+
+      <!-- Variante A -->
+      <div class="variant-card">
+        <div class="variant-letter">A</div>
+        <div class="variant-label">Das Ren-Modell</div>
+        <div class="variant-name">Dienstleistung gratis</div>
+        <div class="variant-tag">★ Höchster wahrgenommener Wert</div>
+        <div class="variant-desc">Du schenkst dem Empfehler eine klar abgrenzbare Zusatzleistung. Material bezahlt er, Montage geht aufs Haus.</div>
+        <div class="variant-stats">
+          <div>
+            <div class="stat-label">Dein Aufwand</div>
+            <div class="stat-value">3–4 Std Arbeit</div>
+          </div>
+          <div>
+            <div class="stat-label">Dein Ertrag</div>
+            <div class="stat-value">20–50k € Auftrag</div>
+          </div>
+        </div>
+        <div class="fit-line"><strong>Passt wenn:</strong> Du eine klar definierbare Zusatzleistung hast (Wallbox, Nachrüstung, Smart-Home-Modul).</div>
+      </div>
+
+      <!-- Variante B -->
+      <div class="variant-card">
+        <div class="variant-letter">B</div>
+        <div class="variant-label">Das Easy-Modell</div>
+        <div class="variant-name">Prozent-Gutschrift</div>
+        <div class="variant-tag">★ Geringste Reibung</div>
+        <div class="variant-desc">5% Rabatt auf die nächste Rechnung, gedeckelt bei 500 €. Einfach zu kommunizieren, einfach zu verbuchen.</div>
+        <div class="variant-stats">
+          <div>
+            <div class="stat-label">Dein Aufwand</div>
+            <div class="stat-value">Rabattbuchung</div>
+          </div>
+          <div>
+            <div class="stat-label">Dein Ertrag</div>
+            <div class="stat-value">Stammkunde + Neukunde</div>
+          </div>
+        </div>
+        <div class="fit-line"><strong>Passt wenn:</strong> Kunden bei Dir wiederkehrenden Bedarf haben — Wartung, Erweiterung, Nachrüstung.</div>
+      </div>
+
+      <!-- Variante C -->
+      <div class="variant-card">
+        <div class="variant-letter">C</div>
+        <div class="variant-label">Das Premium-Modell</div>
+        <div class="variant-name">Sachprämie</div>
+        <div class="variant-tag">★ Stärkste Positionierung</div>
+        <div class="variant-desc">Hochwertiges Werkzeug, Smart-Home-Gerät oder Lautsprecher als Geschenk. Wird im Freundeskreis weitererzählt.</div>
+        <div class="variant-stats">
+          <div>
+            <div class="stat-label">Dein Aufwand</div>
+            <div class="stat-value">150–400 € Einkauf</div>
+          </div>
+          <div>
+            <div class="stat-label">Dein Ertrag</div>
+            <div class="stat-value">Premium-Wahrnehmung</div>
+          </div>
+        </div>
+        <div class="fit-line"><strong>Passt wenn:</strong> Du im Premium-Segment spielst (z.B. hochwertige PV-Anlagen, Smart-Home-Installationen).</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ENTSCHEIDUNGSTABELLE -->
+<section>
+  <div class="wrap">
+    <div class="decision">
+      <p class="section-label">Teil 2 · Entscheidungshilfe</p>
+      <h2>Welche Variante wann?</h2>
+      <p class="lead">Drei typische Szenarien aus dem Handwerksalltag — und welches Modell in welchem Fall am besten funktioniert.</p>
+
+      <div class="decision-grid">
+        <div class="dec-row">
+          <div class="dec-cell dec-header">Szenario</div>
+          <div class="dec-cell dec-header">Beste Variante</div>
+          <div class="dec-cell dec-header">Warum</div>
+        </div>
+
+        <div class="dec-row">
+          <div class="dec-cell">Einfamilienhaus-Endkunde, Projekt 25–50k €, einmaliger Auftrag</div>
+          <div class="dec-cell"><span class="tag-a">Variante A</span><br>Dienstleistung gratis</div>
+          <div class="dec-cell">Hoher emotionaler Wert bei geringem Deckungsbeitragsverlust. Kunde erzählt's beim nächsten Grillen.</div>
+        </div>
+
+        <div class="dec-row">
+          <div class="dec-cell">Gewerbekunde oder Kunde mit jährlichen Wartungsverträgen</div>
+          <div class="dec-cell"><span class="tag-b">Variante B</span><br>Prozent-Gutschrift</div>
+          <div class="dec-cell">Bindet den Empfehler längerfristig, Rabatt greift beim ohnehin geplanten Folgeauftrag.</div>
+        </div>
+
+        <div class="dec-row">
+          <div class="dec-cell">Premium-Auftrag ab 50k €, Kunde mit gehobenem Umfeld</div>
+          <div class="dec-cell"><span class="tag-c">Variante C</span><br>Sachprämie</div>
+          <div class="dec-cell">Geschenk wird im Umfeld gezeigt, vergrößert die Reichweite über den direkten Empfehler hinaus.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMULIERUNGEN -->
+<section>
+  <div class="wrap">
+    <p class="section-label">Teil 3 · Die fertigen Formulierungen</p>
+    <h2>Kopier, anpass, raus damit</h2>
+    <p class="lead">Zwei Touchpoints, an denen Du Deine Empfehlungs-Mechanik aktivierst. Exakt formuliert. Variable Teile in Klammern nur austauschen.</p>
+
+    <div class="formulations">
+
+      <div class="formula-card">
+        <span class="formula-num">01</span>
+        <div class="formula-title">Auf der Baustelle, direkt nach Abschluss</div>
+        <div class="formula-when">Moment: Auftrag fertig, Kunde zufrieden, Du packst grad zusammen.</div>
+        <div class="formula-body" id="text1">Bevor ich losziehe — wenn Du mit der Arbeit zufrieden bist und irgendwann mal jemanden aus Deiner Nachbarschaft oder Familie hörst, der was Ähnliches plant: erzähl's dem einfach.
+
+Wenn daraus ein Auftrag wird, bedank ich mich ordentlich bei Dir — <em>[Variante einsetzen]</em>.
+
+Einfach kurz Bescheid sagen, wenn's so weit ist.</div>
+        <button class="copy-btn" onclick="copyText('text1', this)">Text kopieren</button>
+      </div>
+
+      <div class="formula-card">
+        <span class="formula-num">02</span>
+        <div class="formula-title">Die Dankes-Mail zwei Wochen später</div>
+        <div class="formula-when">Moment: Alles eingerichtet, Kunde nutzt die Anlage, erste Gewöhnung.</div>
+        <div class="formula-body" id="text2"><strong>Betreff:</strong> Kurzer Gruß — und eine Bitte
+
+Hallo <em>[Name]</em>,
+
+zwei Wochen sind seit <em>[Projektname]</em> rum — alles läuft noch wie gewünscht? Wenn ja, freut mich das riesig.
+
+Falls Du zufrieden warst, hätte ich eine Bitte: In <em>[Region]</em> gibt's nicht viele Handwerker, die <em>[spezifische Qualität]</em> wirklich sauber umsetzen. Die meisten <em>[Zielgruppe]</em> wissen oft gar nicht, dass das überhaupt möglich ist.
+
+Wenn Du in Deinem Umfeld jemanden kennst, der vor einer ähnlichen Entscheidung steht — ein kurzer Tipp an mich reicht. Für einen erfolgreichen Abschluss bekommst Du dann <em>[Variante einsetzen]</em>.
+
+Das ist keine Verkaufsmasche — das ist mein Dankeschön dafür, dass Du mein nächster Kunde wirst, bevor ich ihn überhaupt kenne.
+
+Viele Grüße,
+<em>[Dein Name]</em></div>
+        <button class="copy-btn" onclick="copyText('text2', this)">Text kopieren</button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FEHLER -->
+<section>
+  <div class="wrap">
+    <p class="section-label">Teil 4 · Die klassischen Fehler</p>
+    <h2>Drei Dinge, die das Playbook sofort killen</h2>
+    <p class="lead">Wenn Du diese drei Dinge vermeidest, bist Du besser als 95% der Handwerker, die überhaupt versuchen, Empfehlungen aktiv anzusprechen.</p>
+
+    <div class="fehler-grid">
+      <div class="fehler-card">
+        <div class="fehler-num">01</div>
+        <div class="fehler-title">Das Incentive zu spät ansprechen</div>
+        <div class="fehler-desc">Wenn Du erst beim dritten Kontakt davon anfängst, wirkt es wie Akquise. Richtig platziert ist es beim Abschluss, wenn die Dankbarkeit frisch ist.</div>
+      </div>
+      <div class="fehler-card">
+        <div class="fehler-num">02</div>
+        <div class="fehler-title">Zu viel auf einmal versprechen</div>
+        <div class="fehler-desc">"Ich mach Dir einen mega Rabatt" ist unkonkret und weckt Misstrauen. Eine klare, umrissene Leistung wirkt seriöser und wird tatsächlich eingelöst.</div>
+      </div>
+      <div class="fehler-card">
+        <div class="fehler-num">03</div>
+        <div class="fehler-title">Nur sagen "Empfehlungen sind gut"</div>
+        <div class="fehler-desc">Der Kunde braucht einen Anlass und eine Richtung. Das Stichwort "falls Du jemanden kennst, der X plant" gibt ihm das — sonst verpufft der Impuls.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-wrap">
+  <div class="wrap">
+    <div class="cta">
+      <div class="cta-accent"></div>
+      <div>
+        <p class="section-label cta-label">Das war Teil 1</p>
+        <h2>In der Handwerker-Community geht's weiter</h2>
+        <p>Hier drin: Live-Q&amp;As, Playbooks aus echten Betrieben, andere selbständige Handwerker mit denselben Herausforderungen. Kostenlos beitreten — kein Haken.</p>
+      </div>
+      <div class="cta-button-wrap">
+        <a href="https://www.skool.com/tobis-tool-time" class="cta-button">Community beitreten &nbsp;→</a>
+        <span class="cta-sub">Bereits 50+ Handwerksbetriebe drin</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">Tobi's Tool Time</div>
+        <p class="foot-desc">Authentische Sichtbarkeit für Handwerksbetriebe. Über 80.000 Social Media Follower organisch aufgebaut als Elektromeister.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Rechtliches</h4>
+        <a href="/impressum">Impressum</a>
+        <a href="/datenschutz">Datenschutz</a>
+        <a href="/agb">AGB</a>
+      </div>
+      <div class="foot-col">
+        <h4>Kanäle</h4>
+        <a href="https://youtube.com/@tobistooltime">YouTube</a>
+        <a href="https://instagram.com/tobistooltime">Instagram</a>
+        <a href="https://tiktok.com/@tobistooltime">TikTok</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Tobias Haack · Elektro Haack</span>
+      <span>Playbook kostenfrei verwendbar · keine Weitergabe an Dritte</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function copyText(id, btn) {
+    const el = document.getElementById(id);
+    const text = el.innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      const original = btn.innerText;
+      btn.innerText = 'Kopiert ✓';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.innerText = original;
+        btn.classList.remove('copied');
+      }, 1800);
+    });
+  }
+</script>
+
+</body>
+</html>
